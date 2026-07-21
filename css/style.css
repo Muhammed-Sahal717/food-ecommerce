@@ -33,3 +33,194 @@ a {
 ul {
     list-style: none;
 }
+
+/* Hero Carousel */
+.hero-carousel {
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.hero-img {
+    height: 600px;
+    object-fit: cover;
+    width: 100%;
+}
+
+/* Hero Carousel Overlay & Caption Customization */
+.carousel-item {
+    position: relative;
+}
+
+.carousel-item::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        rgba(0, 0, 0, .82) 0%,
+        rgba(0, 0, 0, .55) 40%,
+        rgba(0, 0, 0, .15) 70%,
+        transparent 100%
+    );
+    z-index: 1;
+}
+
+.carousel-caption {
+    left: 8%;
+    right: auto;
+    top: 50%;
+    bottom: auto;
+    transform: translateY(-50%);
+    text-align: left;
+    max-width: 520px;
+    z-index: 2;
+}
+
+.carousel-caption > * {
+    opacity: 0;
+    transform: translateY(25px);
+    transition: all 0.7s ease;
+}
+
+.carousel-item.active .carousel-caption > * {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Staggered delay for caption items */
+.carousel-item.active .carousel-caption > *:nth-child(1) {
+    transition-delay: 0.1s;
+}
+.carousel-item.active .carousel-caption > *:nth-child(2) {
+    transition-delay: 0.25s;
+}
+.carousel-item.active .carousel-caption > *:nth-child(3) {
+    transition-delay: 0.4s;
+}
+.carousel-item.active .carousel-caption > *:nth-child(4) {
+    transition-delay: 0.55s;
+}
+
+
+.carousel-caption .badge {
+    background-color: var(--primary-color) !important;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+
+.carousel-caption h1 {
+    font-family: 'Lobster', cursive;
+    font-size: 3rem;
+    line-height: 1.2;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.carousel-caption p {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.carousel-item.active .carousel-caption p {
+    opacity: 0.9;
+}
+
+/* Custom Indicators styling */
+.carousel-indicators {
+    bottom: 40px;
+    justify-content: flex-start;
+    left: 8%;
+    margin: 0;
+    z-index: 3;
+}
+
+.carousel-indicators [data-bs-target] {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.4);
+    border: none;
+    margin-right: 8px;
+    transition: all 0.3s ease-in-out;
+}
+
+.carousel-indicators .active {
+    width: 28px;
+    border-radius: 5px;
+    background-color: var(--primary-color);
+}
+
+/* Custom Controls styling */
+.carousel-control-prev,
+.carousel-control-next {
+    width: 48px;
+    height: 48px;
+    background-color: rgba(255, 85, 0, 0.75);
+    border-radius: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+    margin: 0 25px;
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+    border: none;
+}
+
+.hero-carousel:hover .carousel-control-prev,
+.hero-carousel:hover .carousel-control-next {
+    opacity: 1;
+}
+
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+    background-color: var(--primary-muted);
+    transform: translateY(-50%) scale(1.1);
+    opacity: 1 !important;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    width: 18px;
+    height: 18px;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .hero-img {
+        height: 250px;
+    }
+    .carousel-caption {
+        max-width: 85%;
+        left: 6%;
+    }
+    .carousel-caption h1 {
+        font-size: 1.8rem;
+    }
+    .carousel-caption p {
+        font-size: 0.9rem;
+        margin-bottom: 15px;
+    }
+    .carousel-caption .btn {
+        padding: 6px 16px;
+        font-size: 0.85rem;
+    }
+    .carousel-indicators {
+        bottom: 20px;
+        left: 6%;
+    }
+    .carousel-indicators [data-bs-target] {
+        width: 8px;
+        height: 8px;
+    }
+    .carousel-indicators .active {
+        width: 20px;
+    }
+    .carousel-control-prev,
+    .carousel-control-next {
+        display: none; /* Hide arrow controls on mobile view for cleaner layout */
+    }
+}

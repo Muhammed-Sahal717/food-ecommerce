@@ -3,5 +3,12 @@ async function loadComponent(id, file) {
     document.getElementById(id).innerHTML = await response.text();
 }
 
-loadComponent("navbar", "components/navbar.html");
-loadComponent("footer", "components/footer.html");
+Promise.all([ // Promise.all waits for all promises to resolve
+    loadComponent("navbar", "components/navbar.html"),
+    loadComponent("hero", "components/hero.html"),
+    loadComponent("footer", "components/footer.html")
+]).then(() => { // then() executes when all promises are resolved
+    if (typeof setupHeroCarousel === "function") {
+        setupHeroCarousel();
+    }
+});
