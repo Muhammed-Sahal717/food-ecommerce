@@ -239,10 +239,26 @@ ul {
     object-fit: contain;
 }
 
+.product-card {
+    transition: .3s;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.product-card:hover {
+    transform: translateY(-8px);
+}
+
+.product-img {
+    height: 220px;
+    object-fit: cover;
+}
+
 /* Responsive Styles */
 @media (max-width: 768px) {
     .hero-img {
-        height: 380px; /* Slightly taller for tablet viewports */
+        height: 380px;
+        /* Slightly taller for tablet viewports */
     }
 
     .carousel-caption {
@@ -280,13 +296,15 @@ ul {
 
     .carousel-control-prev,
     .carousel-control-next {
-        display: none; /* Hide arrow controls on mobile view for cleaner layout */
+        display: none;
+        /* Hide arrow controls on mobile view for cleaner layout */
     }
 }
 
 @media (max-width: 576px) {
     .hero-img {
-        height: 320px; /* Taller on mobile to avoid overflow issues */
+        height: 320px;
+        /* Taller on mobile to avoid overflow issues */
     }
 
     .carousel-caption h1 {
@@ -296,7 +314,8 @@ ul {
     }
 
     .carousel-caption p {
-        display: none; /* Hide the descriptive paragraph on small mobile screens to avoid overlap */
+        display: none;
+        /* Hide the descriptive paragraph on small mobile screens to avoid overlap */
     }
 
     .carousel-caption .badge {

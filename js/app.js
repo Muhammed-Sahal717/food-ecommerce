@@ -7,6 +7,7 @@ Promise.all([ // Promise.all waits for all promises to resolve
     loadComponent("navbar", "components/navbar.html"),
     loadComponent("hero", "components/hero.html"),
     loadComponent("categories", "components/categories.html"),
+    loadComponent("featured-products", "components/featured-products.html"),
     loadComponent("footer", "components/footer.html")
 ]).then(() => { // then() executes when all promises are resolved
     if (typeof setupHeroCarousel === "function") {
@@ -14,5 +15,9 @@ Promise.all([ // Promise.all waits for all promises to resolve
     }
     if (typeof loadCategories === "function") {
         loadCategories();
+    }
+
+    if (typeof loadFeaturedProducts === "function") {
+        loadFeaturedProducts();
     }
 });
