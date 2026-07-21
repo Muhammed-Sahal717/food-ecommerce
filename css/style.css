@@ -1,3 +1,15 @@
+:root {
+    --primary-color: #ff5500 ;
+    --secondary-color: #212529;
+    --background-color: #f8f9fa;
+
+    --primary-muted: #ff7d33;
+    --primary-light: #ff9e55;
+
+    --secondary-muted: #212529;
+    --secondary-light: #212529;
+}
+
 * {
     margin: 0;
     padding: 0;

@@ -62,13 +62,13 @@
             href="wishlist.html"
           >
             <i class="bi bi-heart me-2 fs-5"></i>
-            <span>Wishlist</span>
+            <span>Wishlist <span id="wishlist-count">(0)</span></span>
           </a>
         </li>
         <li class="nav-item me-lg-3">
           <a class="nav-link d-flex align-items-center px-3" href="cart.html">
             <i class="bi bi-cart me-2 fs-5"></i>
-            <span>Cart</span>
+            <span>Cart <span id="cart-count">(0)</span></span>
           </a>
         </li>
         <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
@@ -82,3 +82,27 @@
     </div>
   </div>
 </nav>
+
+<style>
+  @media (min-width: 992px) {
+    .max-width-search {
+      max-width: 550px;
+    }
+  }
+  .nav-link {
+    transition: color 0.2s ease-in-out;
+  }
+  
+  .nav-link:hover {
+    color: var(--primary-color) !important;
+  }
+  .btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+  }
+
+  .btn-primary:hover {
+    background-color: var(--primary-muted);
+    border-color: var(--primary-muted);
+  }
+</style>
