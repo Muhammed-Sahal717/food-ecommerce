@@ -50,6 +50,12 @@ function loadFeaturedProducts() {
 document.addEventListener("click", (e) => {
     const addBtn = e.target.closest(".btn-add-featured");
     if (addBtn) {
+        const user = typeof getCurrentUser === "function" ? getCurrentUser() : null;
+        if (!user) {
+            window.location.href = "login.html";
+            return;
+        }
+
         const id = Number(addBtn.dataset.id);
         const product = products.find(p => p.id === id);
         if (product) {

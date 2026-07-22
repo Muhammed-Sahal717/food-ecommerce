@@ -1,13 +1,20 @@
 let appliedCoupon = null;
 let couponErrorMessage = "";
 
+function getCartKey() {
+    const user = typeof getCurrentUser === "function" ? getCurrentUser() : null;
+    return user ? `cart_${user.id}` : "cart_guest";
+}
+
 function getCart() {
-    const data = localStorage.getItem("cart");
+    const key = getCartKey();
+    const data = localStorage.getItem(key);
     return data ? JSON.parse(data) : [];
 }
 
 function saveCart(cart) {
-    localStorage.setItem("cart", JSON.stringify(cart));
+    const key = getCartKey();
+    localStorage.setItem(key, JSON.stringify(cart));
     updateCartCountBadge();
 }
 
@@ -26,6 +33,17 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function loadCart() {
+    // Only redirect if the user is actually trying to access the cart page
+    if (!window.location.pathname.includes("cart.html")) {
+        return;
+    }
+
+    const user = typeof getCurrentUser === "function" ? getCurrentUser() : null;
+    if (!user) {
+        window.location.href = "login.html";
+        return;
+    }
+
     const cartItemsContainer = document.getElementById("cartItems");
     const cartSummaryContainer = document.getElementById("cartSummary");
 

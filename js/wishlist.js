@@ -1,10 +1,17 @@
+function getWishlistKey() {
+    const user = typeof getCurrentUser === "function" ? getCurrentUser() : null;
+    return user ? `wishlist_${user.id}` : "wishlist_guest";
+}
+
 function getWishlist() {
-    const data = localStorage.getItem("wishlist");
+    const key = getWishlistKey();
+    const data = localStorage.getItem(key);
     return data ? JSON.parse(data) : [];
 }
 
 function saveWishlist(wishlist) {
-    localStorage.setItem("wishlist", JSON.stringify(wishlist));
+    const key = getWishlistKey();
+    localStorage.setItem(key, JSON.stringify(wishlist));
     updateWishlistCountBadge();
 }
 
@@ -23,6 +30,17 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function loadWishlist() {
+    // Only redirect if the user is actually trying to access the wishlist page
+    if (!window.location.pathname.includes("wishlist.html")) {
+        return;
+    }
+
+    const user = typeof getCurrentUser === "function" ? getCurrentUser() : null;
+    if (!user) {
+        window.location.href = "login.html";
+        return;
+    }
+
     const container = document.getElementById("wishlistContainer");
     if (!container) return;
 

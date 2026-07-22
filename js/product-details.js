@@ -107,6 +107,12 @@ function loadProductDetails() {
     const addToCartBtn = document.getElementById("add-to-cart-btn");
     if (addToCartBtn) {
         addToCartBtn.addEventListener("click", () => {
+            const user = typeof getCurrentUser === "function" ? getCurrentUser() : null;
+            if (!user) {
+                window.location.href = "login.html";
+                return;
+            }
+
             const qtyInput = document.getElementById("qty-input");
             const quantity = qtyInput ? Number(qtyInput.value) : 1;
 
@@ -127,6 +133,12 @@ function loadProductDetails() {
     const addToWishlistBtn = document.getElementById("add-to-wishlist-btn");
     if (addToWishlistBtn) {
         addToWishlistBtn.addEventListener("click", () => {
+            const user = typeof getCurrentUser === "function" ? getCurrentUser() : null;
+            if (!user) {
+                window.location.href = "login.html";
+                return;
+            }
+
             if (typeof getWishlist === "function" && typeof saveWishlist === "function") {
                 const wishlist = getWishlist();
                 if (!wishlist.includes(product.id)) {

@@ -163,11 +163,17 @@ function initializeLogin() {
 
 function updateNavbarAuth() {
     const authMenu = document.getElementById("authMenu");
+    const navWishlist = document.getElementById("nav-wishlist");
+    const navCart = document.getElementById("nav-cart");
+
     if (!authMenu) return;
 
     const user = getCurrentUser();
 
     if (!user) {
+        if (navWishlist) navWishlist.style.setProperty("display", "none", "important");
+        if (navCart) navCart.style.setProperty("display", "none", "important");
+
         authMenu.innerHTML = `
             <a class="nav-link dropdown-toggle d-flex align-items-center gap-2" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 <i class="bi bi-person-circle fs-5"></i>
@@ -179,6 +185,9 @@ function updateNavbarAuth() {
             </ul>
         `;
     } else {
+        if (navWishlist) navWishlist.style.setProperty("display", "block", "important");
+        if (navCart) navCart.style.setProperty("display", "block", "important");
+
         authMenu.innerHTML = `
             <a class="nav-link dropdown-toggle d-flex align-items-center gap-2" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 <i class="bi bi-person-circle fs-5"></i>
