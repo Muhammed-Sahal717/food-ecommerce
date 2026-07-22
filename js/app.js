@@ -57,4 +57,10 @@ Promise.all([ // Promise.all waits for all promises to resolve
     if (typeof initializeRegister === "function") {
         initializeRegister();
     }
+    if (typeof initializeLogin === "function") {
+        initializeLogin();
+    }
+    if (typeof updateNavbarAuth === "function") {
+        updateNavbarAuth();
+    }
 });

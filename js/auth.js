@@ -105,3 +105,100 @@ function initializeRegister() {
         }, 1500);
     });
 }
+
+function initializeLogin() {
+    const form = document.getElementById("loginForm");
+    if (!form) return;
+
+    form.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        const emailInput = document.getElementById("loginEmail");
+        const passwordInput = document.getElementById("loginPassword");
+
+        const email = emailInput ? emailInput.value.trim().toLowerCase() : "";
+        const password = passwordInput ? passwordInput.value.trim() : "";
+
+        // Validations
+        if (!email) {
+            showAlert("Please enter your email.");
+            return;
+        }
+
+        if (!password) {
+            showAlert("Please enter your password.");
+            return;
+        }
+
+        // Find user
+        const users = getUsers();
+        const user = users.find(u => u.email === email);
+
+        if (!user) {
+            showAlert("Email not registered.");
+            return;
+        }
+
+        // Verify password
+        if (user.password !== password) {
+            showAlert("Incorrect password.");
+            return;
+        }
+
+        // Login success (omitting the password field in currentSession object)
+        login({
+            id: user.id,
+            name: user.name,
+            email: user.email
+        });
+
+        showAlert("Login successful.", "success");
+        form.reset();
+
+        setTimeout(() => {
+            window.location.href = "index.html";
+        }, 1500);
+    });
+}
+
+function updateNavbarAuth() {
+    const authMenu = document.getElementById("authMenu");
+    if (!authMenu) return;
+
+    const user = getCurrentUser();
+
+    if (!user) {
+        authMenu.innerHTML = `
+            <a class="nav-link dropdown-toggle d-flex align-items-center gap-2" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="bi bi-person-circle fs-5"></i>
+                <span>Account</span>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end border-0 shadow-sm mt-2 rounded-3" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="login.html">Login</a></li>
+                <li><a class="dropdown-item" href="register.html">Register</a></li>
+            </ul>
+        `;
+    } else {
+        authMenu.innerHTML = `
+            <a class="nav-link dropdown-toggle d-flex align-items-center gap-2" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="bi bi-person-circle fs-5"></i>
+                <span>${user.name}</span>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end border-0 shadow-sm mt-2 rounded-3" aria-labelledby="navbarDropdown">
+                <li>
+                    <button class="dropdown-item text-danger d-flex align-items-center gap-2 w-100 text-start" id="logoutBtn">
+                        <i class="bi bi-box-arrow-right"></i> Logout
+                    </button>
+                </li>
+            </ul>
+        `;
+
+        const logoutBtn = document.getElementById("logoutBtn");
+        if (logoutBtn) {
+            logoutBtn.addEventListener("click", () => {
+                logout();
+                window.location.href = "index.html";
+            });
+        }
+    }
+}
