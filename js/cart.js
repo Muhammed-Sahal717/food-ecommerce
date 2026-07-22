@@ -280,4 +280,57 @@ document.addEventListener("click", (e) => {
             }
         }
     }
+
+    const checkoutBtn = e.target.closest("#checkout-btn");
+    if (checkoutBtn) {
+        const cart = getCart();
+        if (cart.length === 0) return;
+
+        let subtotal = 0;
+        cart.forEach(item => {
+            const product = products.find(p => p.id === item.id);
+            if (product) {
+                subtotal += product.price * item.quantity;
+            }
+        });
+        const discount = appliedCoupon ? Math.round(subtotal * appliedCoupon.discount / 100) : 0;
+        const deliveryFee = (subtotal - discount) >= 500 ? 0 : 50;
+        const grandTotal = subtotal - discount + deliveryFee;
+
+        const modalTotalSpan = document.getElementById("checkout-modal-total");
+        if (modalTotalSpan) {
+            modalTotalSpan.textContent = `₹${grandTotal}`;
+        }
+
+        const modalEl = document.getElementById("checkoutModal");
+        if (modalEl) {
+            const checkoutModal = new bootstrap.Modal(modalEl);
+            checkoutModal.show();
+        }
+    }
+});
+
+// Handle Checkout Form Submission
+document.addEventListener("submit", (e) => {
+    const form = e.target.closest("#checkoutForm");
+    if (form) {
+        e.preventDefault();
+
+        // Reset cart and coupon states
+        saveCart([]);
+        appliedCoupon = null;
+        couponErrorMessage = "";
+
+        // Hide checkout modal
+        const modalEl = document.getElementById("checkoutModal");
+        if (modalEl) {
+            const instance = bootstrap.Modal.getInstance(modalEl);
+            if (instance) {
+                instance.hide();
+            }
+        }
+
+        alert(" Order placed successfully! Thank you for ordering.");
+        window.location.href = "index.html";
+    }
 });

@@ -63,4 +63,7 @@ Promise.all([ // Promise.all waits for all promises to resolve
     if (typeof updateNavbarAuth === "function") {
         updateNavbarAuth();
     }
+    if (typeof initializeNavbarSearch === "function") {
+        initializeNavbarSearch();
+    }
 });

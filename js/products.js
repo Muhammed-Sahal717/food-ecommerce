@@ -31,7 +31,18 @@ function loadProducts(productList = null) {
     if (productList === null) {
         const params = new URLSearchParams(window.location.search);
         const activeCategory = params.get("category");
-        if (activeCategory) {
+        const activeSearch = params.get("search");
+
+        if (activeSearch) {
+            productList = products.filter(
+                p => p.name.toLowerCase().includes(activeSearch.toLowerCase()) ||
+                     p.category.toLowerCase().includes(activeSearch.toLowerCase())
+            );
+            const searchInput = document.getElementById("searchInput");
+            if (searchInput) {
+                searchInput.value = activeSearch;
+            }
+        } else if (activeCategory) {
             productList = products.filter(
                 p => p.category.toLowerCase() === activeCategory.toLowerCase()
             );
