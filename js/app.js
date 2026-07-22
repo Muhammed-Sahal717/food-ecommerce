@@ -28,6 +28,8 @@ Promise.all([ // Promise.all waits for all promises to resolve
     initializeCategoryFilter();
 
     loadProducts();
+
+    initializeSearch();
 });
 
 function loadCategoryFilters() {
@@ -128,5 +130,22 @@ function initializeCategoryFilter() {
                 loadProducts(filteredProducts);
             }
         });
+    });
+}
+
+function initializeSearch() {
+    const searchInput = document.getElementById("searchInput");
+
+    if (!searchInput) return;
+
+    searchInput.addEventListener("input", () => {
+        const searchText = searchInput.value.toLowerCase().trim();
+
+        const filteredProducts = products.filter(product =>
+            product.name.toLowerCase().includes(searchText) ||
+            product.category.toLowerCase().includes(searchText)
+        );
+
+        loadProducts(filteredProducts);
     });
 }
