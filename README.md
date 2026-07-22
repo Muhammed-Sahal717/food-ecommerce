@@ -20,9 +20,13 @@ This is a static frontend project, so it does not need a backend server to run.
 
 - The main page is `index.html`
 - Page sections are loaded from the `components/` folder
-- Product and user data are stored in JavaScript files
+- Product data lives in `js/data.js`
+- Shared browser storage helpers live in `js/storage.js`
+- Feature logic is split across smaller JavaScript files in `js/`
 - Cart, wishlist, and login state are saved in `localStorage`
 - Banner images and product images are stored in `assets/`
+- Base styles are in `css/style.css`
+- Responsive rules are in `css/responsive.css`
 
 ## Main Pages
 
@@ -45,8 +49,8 @@ This is a static frontend project, so it does not need a backend server to run.
 
 - `assets/` - images, icons, and banner artwork
 - `components/` - reusable HTML sections
-- `css/` - styling files
-- `js/` - app logic and data files
+- `css/` - main styles and responsive styles
+- `js/` - app logic, shared storage helpers, and product data
 
 ## How To Run
 
