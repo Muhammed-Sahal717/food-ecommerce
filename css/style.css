@@ -323,10 +323,17 @@ ul {
 }
 
 .product-card img {
-  height: 220px;
+  height: auto;
   object-fit: cover;
 }
 
 .product-card .badge {
   border-radius: 50px;
+}
+
+.truncate-text {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
