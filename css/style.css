@@ -270,6 +270,10 @@ ul {
   width: 100%;
 }
 
+.offer-banner-art picture {
+  display: block;
+}
+
 .offer-banner-art img {
   display: block;
   width: 100%;
@@ -279,23 +283,35 @@ ul {
 
 .offer-btn {
   position: absolute;
-  left: 7.08%;
-  top: 78.22%;
-  width: 23.65%;
-  height: 11.95%;
+  /* Printed button bounds in offer-banner.png (1817 x 866). */
+  left: 4.35%;
+  top: 79.45%;
+  width: 21.30%;
+  height: 11.20%;
   border-radius: 999px;
   cursor: pointer;
   z-index: 1;
   -webkit-tap-highlight-color: transparent;
+  transition: background-color 0.2s ease;
 }
 
 .offer-btn:hover {
-  background: #ff730828;
+  background-color: rgba(255, 255, 255, 0.10);
 }
 
 .offer-btn:focus-visible {
   outline: 3px solid #2b1105;
   outline-offset: 3px;
+}
+
+@media (max-width: 768px) {
+  .offer-btn {
+    /* Printed button bounds in offer-banner-mobile.png (864 x 1821). */
+    left: 10.60%;
+    top: 88.25%;
+    width: 77.40%;
+    height: 6.40%;
+  }
 }
 
 .product-card {

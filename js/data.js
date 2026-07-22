@@ -232,3 +232,15 @@ const products = [
         description: "Shredded chicken cooked in spicy adobo sauce, topped with fresh lettuce, pico de gallo, and pickled jalapenos."
     }
 ];
+
+const coupons = [
+    {
+        code: "FOOD20",
+        discount: 20
+    },
+    {
+        code: "WELCOME50",
+        discount: 50,
+        minAmount: 1000
+    }
+];
