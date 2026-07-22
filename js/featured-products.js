@@ -33,7 +33,7 @@ function loadFeaturedProducts() {
                         </p>
 
                         <div class="d-grid">
-                            <button class="btn btn-primary">
+                            <button class="btn btn-primary btn-add-featured" data-id="${product.id}">
                                 Add to Cart
                             </button>
                         </div>
@@ -45,3 +45,23 @@ function loadFeaturedProducts() {
             `;
     });
 }
+
+// Click listener to handle Add to Cart on home page featured products
+document.addEventListener("click", (e) => {
+    const addBtn = e.target.closest(".btn-add-featured");
+    if (addBtn) {
+        const id = Number(addBtn.dataset.id);
+        const product = products.find(p => p.id === id);
+        if (product) {
+            const cart = getCart();
+            const item = cart.find(i => i.id === id);
+            if (item) {
+                item.quantity++;
+            } else {
+                cart.push({ id: id, quantity: 1 });
+            }
+            saveCart(cart);
+            alert(`${product.name} added to cart!`);
+        }
+    }
+});

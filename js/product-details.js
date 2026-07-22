@@ -91,7 +91,7 @@ function loadProductDetails() {
 
                     <!-- CTA Actions -->
                     <div class="d-flex flex-wrap gap-3 mt-4">
-                        <button class="btn btn-primary btn-lg rounded px-4 py-2.5 fw-semibold d-flex align-items-center gap-2 shadow-sm">
+                        <button id="add-to-cart-btn" class="btn btn-primary btn-lg rounded px-4 py-2.5 fw-semibold d-flex align-items-center gap-2 shadow-sm">
                             <i class="bi bi-cart-plus fs-5"></i> Add to Cart
                         </button>
                         <button class="btn btn-outline-danger btn-lg rounded px-4 py-2.5 fw-semibold d-flex align-items-center gap-2">
@@ -102,6 +102,26 @@ function loadProductDetails() {
             </div>
         </div>
     `;
+
+    // Add to cart listener
+    const addToCartBtn = document.getElementById("add-to-cart-btn");
+    if (addToCartBtn) {
+        addToCartBtn.addEventListener("click", () => {
+            const qtyInput = document.getElementById("qty-input");
+            const quantity = qtyInput ? Number(qtyInput.value) : 1;
+
+            const cart = getCart();
+            const item = cart.find(i => i.id === product.id);
+            if (item) {
+                item.quantity += quantity;
+            } else {
+                cart.push({ id: product.id, quantity: quantity });
+            }
+            saveCart(cart);
+            alert(`${product.name} added to cart!`);
+            updateCartCountBadge();
+        });
+    }
 
     // Local quantity button functionality
     setupLocalQuantityListeners();

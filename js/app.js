@@ -44,4 +44,7 @@ Promise.all([ // Promise.all waits for all promises to resolve
     if (typeof loadCart === "function") {
         loadCart();
     }
+    if (typeof updateCartCountBadge === "function") {
+        updateCartCountBadge();
+    }
 });
