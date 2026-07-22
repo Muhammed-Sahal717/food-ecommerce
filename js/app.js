@@ -77,7 +77,7 @@ Promise.all([
 });
 
 function updateActiveNav() {
-  const currentPage = window.location.pathname.split("/").pop() || "index.html";
+  const currentPage = window.location.pathname.split("/").pop();
 
   const navLinks = document.querySelectorAll(".navbar .nav-link");
 

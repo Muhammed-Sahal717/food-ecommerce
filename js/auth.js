@@ -13,6 +13,7 @@ function showAlert(message, type = "danger") {
     }, 3000);
 }
 
+// Register form initialization
 function initializeRegister() {
     const form = document.getElementById("registerForm");
     if (!form) return;
