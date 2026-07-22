@@ -21,6 +21,9 @@ function loadProductDetails() {
     }
 
     container.innerHTML = `
+        <a href="products.html" class="btn btn-outline-secondary mb-4">
+            <i class="bi bi-arrow-left"></i> Back to Products
+        </a>
         <div class="row g-5 align-items-center">
             <!-- Left Column: Product Image -->
             <div class="col-lg-6">
