@@ -21,6 +21,13 @@ body {
   background: #f8f9fa;
 }
 
+/* Sticky Navbar Container */
+#navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1030;
+}
+
 /* Primary Brand Color Overrides */
 .text-primary {
   color: var(--primary-color) !important;
