@@ -1,25 +1,3 @@
-function getUsers() {
-    const data = localStorage.getItem("users");
-    return data ? JSON.parse(data) : [];
-}
-
-function saveUsers(users) {
-    localStorage.setItem("users", JSON.stringify(users));
-}
-
-function getCurrentUser() {
-    const data = localStorage.getItem("currentUser");
-    return data ? JSON.parse(data) : null;
-}
-
-function login(user) {
-    localStorage.setItem("currentUser", JSON.stringify(user));
-}
-
-function logout() {
-    localStorage.removeItem("currentUser");
-}
-
 function showAlert(message, type = "danger") {
     const alertPlaceholder = document.getElementById("alertPlaceholder");
     if (!alertPlaceholder) return;

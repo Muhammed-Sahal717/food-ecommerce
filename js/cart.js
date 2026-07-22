@@ -1,37 +1,6 @@
 let appliedCoupon = null;
 let couponErrorMessage = "";
 
-function getCartKey() {
-    const user = typeof getCurrentUser === "function" ? getCurrentUser() : null;
-    return user ? `cart_${user.id}` : "cart_guest";
-}
-
-function getCart() {
-    const key = getCartKey();
-    const data = localStorage.getItem(key);
-    return data ? JSON.parse(data) : [];
-}
-
-function saveCart(cart) {
-    const key = getCartKey();
-    localStorage.setItem(key, JSON.stringify(cart));
-    updateCartCountBadge();
-}
-
-function updateCartCountBadge() {
-    const cart = getCart();
-    const count = cart.reduce((total, item) => total + item.quantity, 0);
-    const badge = document.getElementById("cart-count");
-    if (badge) {
-        badge.textContent = count > 0 ? `(${count})` : "(0)";
-    }
-}
-
-// Automatically update the navbar badge count when script loads
-document.addEventListener("DOMContentLoaded", () => {
-    updateCartCountBadge();
-});
-
 function loadCart() {
     // Only redirect if the user is actually trying to access the cart page
     if (!window.location.pathname.includes("cart.html")) {
@@ -259,13 +228,7 @@ document.addEventListener("click", (e) => {
 
                 if (coupon) {
                     const cart = getCart();
-                    let currentSubtotal = 0;
-                    cart.forEach(item => {
-                        const product = products.find(p => p.id === item.id);
-                        if (product) {
-                            currentSubtotal += product.price * item.quantity;
-                        }
-                    });
+                    const currentSubtotal = calculateCartSubtotal(cart);
 
                     if (coupon.minAmount && currentSubtotal < coupon.minAmount) {
                         couponErrorMessage = `Minimum order amount of ₹${coupon.minAmount} required.`;
@@ -286,13 +249,7 @@ document.addEventListener("click", (e) => {
         const cart = getCart();
         if (cart.length === 0) return;
 
-        let subtotal = 0;
-        cart.forEach(item => {
-            const product = products.find(p => p.id === item.id);
-            if (product) {
-                subtotal += product.price * item.quantity;
-            }
-        });
+        const subtotal = calculateCartSubtotal(cart);
         const discount = appliedCoupon ? Math.round(subtotal * appliedCoupon.discount / 100) : 0;
         const deliveryFee = (subtotal - discount) >= 500 ? 0 : 50;
         const grandTotal = subtotal - discount + deliveryFee;

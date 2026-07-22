@@ -1,34 +1,3 @@
-function getWishlistKey() {
-    const user = typeof getCurrentUser === "function" ? getCurrentUser() : null;
-    return user ? `wishlist_${user.id}` : "wishlist_guest";
-}
-
-function getWishlist() {
-    const key = getWishlistKey();
-    const data = localStorage.getItem(key);
-    return data ? JSON.parse(data) : [];
-}
-
-function saveWishlist(wishlist) {
-    const key = getWishlistKey();
-    localStorage.setItem(key, JSON.stringify(wishlist));
-    updateWishlistCountBadge();
-}
-
-function updateWishlistCountBadge() {
-    const wishlist = getWishlist();
-    const count = wishlist.length;
-    const badge = document.getElementById("wishlist-count");
-    if (badge) {
-        badge.textContent = count > 0 ? `(${count})` : "(0)";
-    }
-}
-
-// Automatically update the navbar badge count when script loads
-document.addEventListener("DOMContentLoaded", () => {
-    updateWishlistCountBadge();
-});
-
 function loadWishlist() {
     // Only redirect if the user is actually trying to access the wishlist page
     if (!window.location.pathname.includes("wishlist.html")) {
