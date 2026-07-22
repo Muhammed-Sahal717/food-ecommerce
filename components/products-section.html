@@ -1,0 +1,45 @@
+<section class="products-section py-5">
+  <div class="container">
+    <div class="text-center mb-5">
+      <span class="text-uppercase fw-semibold text-primary"> Our Menu </span>
+
+      <h2 class="fw-bold mt-2">Delicious Food Collection</h2>
+
+      <p class="text-muted mx-auto" style="max-width: 600px">
+        Browse all our freshly prepared dishes and find your favorite meal.
+      </p>
+    </div>
+    <div class="row g-3 align-items-center mb-5">
+      <!-- Search -->
+      <div class="col-lg-8">
+        <div class="input-group">
+          <span class="input-group-text bg-white">
+            <i class="bi bi-search"></i>
+          </span>
+
+          <input
+            type="text"
+            id="searchInput"
+            class="form-control"
+            placeholder="Search food..."
+          />
+        </div>
+      </div>
+
+      <!-- Sort -->
+      <div class="col-lg-4">
+        <select id="sortSelect" class="form-select">
+          <option value="default">Sort By</option>
+          <option value="low-high">Price: Low to High</option>
+          <option value="high-low">Price: High to Low</option>
+          <option value="name">Name (A-Z)</option>
+        </select>
+      </div>
+    </div>
+    <div
+      id="categoryFilters"
+      class="d-flex flex-wrap justify-content-center gap-2 mb-5"
+    ></div>
+    <div class="row g-4" id="productsContainer"></div>
+  </div>
+</section>
