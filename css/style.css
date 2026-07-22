@@ -304,16 +304,6 @@ ul {
   outline-offset: 3px;
 }
 
-@media (max-width: 768px) {
-  .offer-btn {
-    /* Printed button bounds in offer-banner-mobile.png (864 x 1821). */
-    left: 10.60%;
-    top: 88.25%;
-    width: 77.40%;
-    height: 6.40%;
-  }
-}
-
 .product-card {
   transition: 0.3s;
   border-radius: 16px;
@@ -332,83 +322,4 @@ ul {
 
 .product-card .badge {
   border-radius: 50px;
-}
-
-/* Responsive Styles */
-@media (max-width: 768px) {
-  .hero-img {
-    height: 380px;
-    /* Slightly taller for tablet viewports */
-  }
-
-  .carousel-caption {
-    max-width: 90%;
-    left: 6%;
-  }
-
-  .carousel-caption h1 {
-    font-size: 2rem;
-  }
-
-  .carousel-caption p {
-    font-size: 0.95rem;
-    margin-bottom: 20px;
-  }
-
-  .carousel-caption .btn {
-    padding: 8px 20px;
-    font-size: 0.9rem;
-  }
-
-  .carousel-indicators {
-    bottom: 25px;
-    left: 6%;
-  }
-
-  .carousel-indicators [data-bs-target] {
-    width: 8px;
-    height: 8px;
-  }
-
-  .carousel-indicators .active {
-    width: 20px;
-  }
-
-  .carousel-control-prev,
-  .carousel-control-next {
-    display: none;
-    /* Hide arrow controls on mobile view for cleaner layout */
-  }
-}
-
-@media (max-width: 576px) {
-  .hero-img {
-    height: 320px;
-    /* Taller on mobile to avoid overflow issues */
-  }
-
-  .carousel-caption h1 {
-    font-size: 1.5rem;
-    margin-top: 10px;
-    margin-bottom: 10px;
-  }
-
-  .carousel-caption p {
-    display: none;
-    /* Hide the descriptive paragraph on small mobile screens to avoid overlap */
-  }
-
-  .carousel-caption .badge {
-    font-size: 0.75rem;
-    padding: 4px 10px !important;
-  }
-
-  .carousel-caption .btn {
-    padding: 6px 14px;
-    font-size: 0.8rem;
-  }
-
-  .carousel-indicators {
-    bottom: 15px;
-  }
 }
