@@ -54,4 +54,7 @@ Promise.all([ // Promise.all waits for all promises to resolve
     if (typeof updateWishlistCountBadge === "function") {
         updateWishlistCountBadge();
     }
+    if (typeof initializeRegister === "function") {
+        initializeRegister();
+    }
 });
