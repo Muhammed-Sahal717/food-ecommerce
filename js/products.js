@@ -1,18 +1,22 @@
 function loadCategoryFilters() {
     const container = document.getElementById("categoryFilters");
-
     if (!container) return;
 
+    const params = new URLSearchParams(window.location.search);
+    const activeCategory = params.get("category");
+    const isAllActive = !activeCategory;
+
     container.innerHTML = `
-        <button class="btn btn-primary category-btn active" data-category="all">
+        <button class="btn ${isAllActive ? 'btn-primary active' : 'btn-outline-primary'} category-btn" data-category="all">
             All
         </button>
     `;
 
     categories.forEach(category => {
+        const isSelected = activeCategory && category.name.toLowerCase() === activeCategory.toLowerCase();
         container.innerHTML += `
             <button
-                class="btn btn-outline-primary category-btn"
+                class="btn ${isSelected ? 'btn-primary active' : 'btn-outline-primary'} category-btn"
                 data-category="${category.name}">
                 ${category.name}
             </button>
@@ -20,10 +24,21 @@ function loadCategoryFilters() {
     });
 }
 
-function loadProducts(productList = products) {
+function loadProducts(productList = null) {
     const container = document.getElementById("productsContainer");
-
     if (!container) return;
+
+    if (productList === null) {
+        const params = new URLSearchParams(window.location.search);
+        const activeCategory = params.get("category");
+        if (activeCategory) {
+            productList = products.filter(
+                p => p.category.toLowerCase() === activeCategory.toLowerCase()
+            );
+        } else {
+            productList = products;
+        }
+    }
 
     container.innerHTML = "";
 
