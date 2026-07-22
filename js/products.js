@@ -55,8 +55,10 @@ function loadProducts(productList = products) {
                             ₹${product.price}
                         </h5>
 
-                        <a href="#" class="btn btn-primary btn-sm">
-                            View
+                        <a
+                            href="product-details.html?id=${product.id}"
+                            class="btn btn-primary btn-sm">
+                            View Details
                         </a>
                     </div>
 
