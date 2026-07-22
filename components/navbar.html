@@ -30,7 +30,7 @@
       <!-- Nav Links -->
       <ul class="navbar-nav me-auto mb-2 mb-lg-0 fw-medium">
         <li class="nav-item">
-          <a class="nav-link px-3 active" href="index.html">Home</a>
+          <a class="nav-link px-3" href="index.html">Home</a>
         </li>
         <li class="nav-item">
           <a class="nav-link px-3" href="products.html">Products</a>
@@ -38,7 +38,10 @@
       </ul>
 
       <!-- Search Bar -->
-      <form id="navSearchForm" class="d-flex my-2 my-lg-0 mx-lg-4 flex-grow-1 max-width-search">
+      <form
+        id="navSearchForm"
+        class="d-flex my-2 my-lg-0 mx-lg-4 flex-grow-1 max-width-search"
+      >
         <div class="input-group">
           <input
             id="navSearchInput"
@@ -57,7 +60,11 @@
       <ul
         class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center fw-medium"
       >
-        <li class="nav-item me-lg-2" id="nav-wishlist" style="display: none !important;">
+        <li
+          class="nav-item me-lg-2"
+          id="nav-wishlist"
+          style="display: none !important"
+        >
           <a
             class="nav-link d-flex align-items-center px-3"
             href="wishlist.html"
@@ -66,7 +73,11 @@
             <span>Wishlist <span id="wishlist-count">(0)</span></span>
           </a>
         </li>
-        <li class="nav-item me-lg-3" id="nav-cart" style="display: none !important;">
+        <li
+          class="nav-item me-lg-3"
+          id="nav-cart"
+          style="display: none !important"
+        >
           <a class="nav-link d-flex align-items-center px-3" href="cart.html">
             <i class="bi bi-cart me-2 fs-5"></i>
             <span>Cart <span id="cart-count">(0)</span></span>
@@ -82,7 +93,7 @@
   .nav-link {
     transition: color 0.2s ease-in-out;
   }
-  
+
   .nav-link:hover {
     color: var(--primary-color) !important;
   }
