@@ -25,6 +25,8 @@ Promise.all([ // Promise.all waits for all promises to resolve
         loadFeaturedProducts();
     }
     loadCategoryFilters();
+    initializeCategoryFilter();
+
     loadProducts();
 });
 
@@ -94,5 +96,37 @@ function loadProducts(productList = products) {
             </div>
         </div>
         `;
+    });
+}
+
+function initializeCategoryFilter() {
+    const buttons = document.querySelectorAll(".category-btn");
+
+    buttons.forEach(button => {
+        button.addEventListener("click", () => {
+
+            buttons.forEach(btn =>
+                btn.classList.remove("active", "btn-primary")
+            );
+
+            buttons.forEach(btn =>
+                btn.classList.add("btn-outline-primary")
+            );
+
+            button.classList.remove("btn-outline-primary");
+            button.classList.add("active", "btn-primary");
+
+            const category = button.dataset.category;
+
+            if (category === "all") {
+                loadProducts(products);
+            } else {
+                const filteredProducts = products.filter(
+                    product => product.category === category
+                );
+
+                loadProducts(filteredProducts);
+            }
+        });
     });
 }
