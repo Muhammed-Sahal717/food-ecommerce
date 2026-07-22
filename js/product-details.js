@@ -94,7 +94,7 @@ function loadProductDetails() {
                         <button id="add-to-cart-btn" class="btn btn-primary btn-lg rounded px-4 py-2.5 fw-semibold d-flex align-items-center gap-2 shadow-sm">
                             <i class="bi bi-cart-plus fs-5"></i> Add to Cart
                         </button>
-                        <button class="btn btn-outline-danger btn-lg rounded px-4 py-2.5 fw-semibold d-flex align-items-center gap-2">
+                        <button id="add-to-wishlist-btn" class="btn btn-outline-danger btn-lg rounded px-4 py-2.5 fw-semibold d-flex align-items-center gap-2">
                             <i class="bi bi-heart fs-5"></i> Add to Wishlist
                         </button>
                     </div>
@@ -120,6 +120,23 @@ function loadProductDetails() {
             saveCart(cart);
             alert(`${product.name} added to cart!`);
             updateCartCountBadge();
+        });
+    }
+
+    // Add to wishlist listener
+    const addToWishlistBtn = document.getElementById("add-to-wishlist-btn");
+    if (addToWishlistBtn) {
+        addToWishlistBtn.addEventListener("click", () => {
+            if (typeof getWishlist === "function" && typeof saveWishlist === "function") {
+                const wishlist = getWishlist();
+                if (!wishlist.includes(product.id)) {
+                    wishlist.push(product.id);
+                    saveWishlist(wishlist);
+                    alert(`${product.name} added to wishlist!`);
+                } else {
+                    alert(`${product.name} is already in your wishlist!`);
+                }
+            }
         });
     }
 

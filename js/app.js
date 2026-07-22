@@ -14,7 +14,8 @@ Promise.all([ // Promise.all waits for all promises to resolve
     loadComponent("footer", "components/footer.html"),
     loadComponent("productsSection", "components/products-section.html"),
     loadComponent("product-details-section", "components/product-details-section.html"),
-    loadComponent("cart-section", "components/cart-section.html")
+    loadComponent("cart-section", "components/cart-section.html"),
+    loadComponent("wishlist-section", "components/wishlist-section.html")
 ]).then(() => { // then() executes when all promises are resolved
     if (typeof setupHeroCarousel === "function") {
         setupHeroCarousel();
@@ -44,7 +45,13 @@ Promise.all([ // Promise.all waits for all promises to resolve
     if (typeof loadCart === "function") {
         loadCart();
     }
+    if (typeof loadWishlist === "function") {
+        loadWishlist();
+    }
     if (typeof updateCartCountBadge === "function") {
         updateCartCountBadge();
+    }
+    if (typeof updateWishlistCountBadge === "function") {
+        updateWishlistCountBadge();
     }
 });
